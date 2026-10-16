@@ -5,6 +5,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Lock, ArrowRight, Loader2, KeyRound } from "lucide-react";
 
+import { authenticateFounder } from "@/lib/services";
+
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -20,19 +22,12 @@ function LoginForm() {
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/auth", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pin }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || "PIN Maestro incorrecto");
+      const success = authenticateFounder(pin);
+      if (!success) {
+        throw new Error("PIN Maestro incorrecto (use vlush2026)");
       }
 
       router.push(callbackUrl);
-      router.refresh();
     } catch (err: any) {
       setErrorMsg(err.message || "Error al autenticar");
     } finally {

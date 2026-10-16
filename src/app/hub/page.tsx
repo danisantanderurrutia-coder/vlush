@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { getPreorders } from "@/lib/services";
 import {
   TrendingUp,
   Package,
@@ -25,21 +26,18 @@ export default function HubDashboardPage() {
   const factoryMOQ = 100;
 
   useEffect(() => {
-    fetch("/api/preorders")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.preorders && Array.isArray(data.preorders)) {
-          setPreorders(data.preorders);
-          const units = data.preorders.reduce((acc: number, p: any) => acc + (p.quantity || 1), 0);
-          const revenue = data.preorders.reduce(
-            (acc: number, p: any) => acc + (Number(p.total_amount) || Number(p.totalAmount) || 0),
-            0
-          );
-          setTotalUnits(units);
-          setTotalRaised(revenue);
-        }
-      })
-      .catch(() => {});
+    getPreorders().then((data) => {
+      if (data && Array.isArray(data)) {
+        setPreorders(data as any);
+        const units = data.reduce((acc: number, p: any) => acc + (p.quantity || 1), 0);
+        const revenue = data.reduce(
+          (acc: number, p: any) => acc + (Number(p.total_amount) || Number(p.totalAmount) || 0),
+          0
+        );
+        setTotalUnits(units);
+        setTotalRaised(revenue);
+      }
+    });
   }, []);
 
   const progressPercent = Math.min(Math.round((totalUnits / factoryMOQ) * 100), 100);

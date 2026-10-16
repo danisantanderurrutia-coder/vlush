@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import confetti from "canvas-confetti";
+import { submitPreorder } from "@/lib/services";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { INITIAL_PRODUCTS } from "@/lib/initial-data";
@@ -52,25 +53,20 @@ export default function PreorderCheckoutPage() {
     startTransition(async () => {
       try {
         const fullAddress = `${address}, ${postalCode} ${city}`;
-        const res = await fetch("/api/preorders", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            customer_name: name,
-            email,
-            shipping_address: fullAddress,
-            country,
-            product_line: product.line,
-            item_name: product.name,
-            size: selectedSize,
-            quantity,
-            total_amount: grandTotal,
-          }),
+        const { preorder } = await submitPreorder({
+          customer_name: name,
+          email,
+          shipping_address: fullAddress,
+          country,
+          product_line: product.line,
+          item_name: product.name,
+          size: selectedSize,
+          quantity,
+          total_amount: grandTotal,
         });
 
-        const data = await res.json();
         setOrderReceipt({
-          orderId: data.preorder?.id || `VL-${Math.floor(100000 + Math.random() * 900000)}`,
+          orderId: preorder?.id || `VL-${Math.floor(100000 + Math.random() * 900000)}`,
           customerName: name,
           email,
           productName: product.name,

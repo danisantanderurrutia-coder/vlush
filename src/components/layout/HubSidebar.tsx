@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { logoutFounder } from "@/lib/services";
 import {
   LayoutDashboard,
   FileText,
@@ -59,10 +60,9 @@ export default function HubSidebar({ onCloseMobile }: HubSidebarProps) {
     },
   ];
 
-  const handleLogout = async () => {
-    await fetch("/api/auth", { method: "DELETE" });
+  const handleLogout = () => {
+    logoutFounder();
     router.push("/hub/login");
-    router.refresh();
   };
 
   return (

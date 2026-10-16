@@ -1,9 +1,10 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import HubSidebar from "@/components/layout/HubSidebar";
 import { Menu, X, Sparkles, Bell, ExternalLink, Shield } from "lucide-react";
 import Link from "next/link";
+import { isFounderAuthenticated } from "@/lib/services";
 
 export default function HubLayout({
   children,
@@ -11,6 +12,34 @@ export default function HubLayout({
   children: React.ReactNode;
 }) {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    if (pathname === "/hub/login") {
+      setIsAuth(true);
+      return;
+    }
+
+    if (!isFounderAuthenticated()) {
+      router.push(`/hub/login?callbackUrl=${encodeURIComponent(pathname)}`);
+    } else {
+      setIsAuth(true);
+    }
+  }, [pathname, router]);
+
+  if (pathname === "/hub/login") {
+    return <>{children}</>;
+  }
+
+  if (!isAuth) {
+    return (
+      <div className="min-h-screen bg-[#0D0F12] flex items-center justify-center text-xs text-[#7E8699]">
+        Verificando credenciales de fundador...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0D0F12] text-[#E1E4EA] flex font-sans">

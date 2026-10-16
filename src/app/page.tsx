@@ -12,6 +12,7 @@ import QuickPreorderModal from "@/components/ecommerce/QuickPreorderModal";
 import { INITIAL_PRODUCTS, Product } from "@/lib/initial-data";
 import { Sparkles, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { getPreorders } from "@/lib/services";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -21,20 +22,17 @@ export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState<"all" | "female" | "unisex" | "bundles">("all");
   const [reservedCount, setReservedCount] = useState(45);
 
-  // Fetch live preorder count from API
+  // Fetch live preorder count from service
   useEffect(() => {
-    fetch("/api/preorders")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.preorders && Array.isArray(data.preorders)) {
-          const totalUnits = data.preorders.reduce(
-            (acc: number, item: { quantity?: number }) => acc + (item.quantity || 1),
-            0
-          );
-          if (totalUnits > 0) setReservedCount(totalUnits);
-        }
-      })
-      .catch(() => {});
+    getPreorders().then((preorders) => {
+      if (preorders && Array.isArray(preorders)) {
+        const totalUnits = preorders.reduce(
+          (acc: number, item: { quantity?: number }) => acc + (item.quantity || 1),
+          0
+        );
+        if (totalUnits > 0) setReservedCount(totalUnits);
+      }
+    });
   }, []);
 
   const handleOpenPreorder = (product: Product, size: string) => {

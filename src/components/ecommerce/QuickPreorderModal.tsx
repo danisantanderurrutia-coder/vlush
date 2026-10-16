@@ -6,6 +6,7 @@ import { Product } from "@/lib/initial-data";
 import { formatEUR } from "@/lib/utils";
 import { X, Sparkles, ShieldCheck, Check, ArrowRight, Loader2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { submitPreorder } from "@/lib/services";
 
 interface QuickPreorderModalProps {
   product: Product;
@@ -43,25 +44,17 @@ export default function QuickPreorderModal({
     setErrorMsg("");
 
     try {
-      const response = await fetch("/api/preorders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          customer_name: name,
-          email,
-          shipping_address: address,
-          country,
-          product_line: product.line,
-          item_name: isTrioPack ? `Pack Trio (${product.name})` : product.name,
-          size,
-          quantity: isTrioPack ? 3 : 1,
-          total_amount: currentPrice,
-        }),
+      await submitPreorder({
+        customer_name: name,
+        email,
+        shipping_address: address,
+        country,
+        product_line: product.line,
+        item_name: isTrioPack ? `Pack Trio (${product.name})` : product.name,
+        size,
+        quantity: isTrioPack ? 3 : 1,
+        total_amount: currentPrice,
       });
-
-      if (!response.ok) {
-        throw new Error("No se pudo completar la reserva.");
-      }
 
       setCompleted(true);
       confetti({
