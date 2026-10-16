@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/ecommerce/ProductCard";
@@ -38,7 +39,7 @@ export default function CollectionsPage() {
       <main className="flex-1 py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="text-center max-w-3xl mx-auto mb-10">
             <span className="text-xs uppercase tracking-[0.25em] text-[#4A1521] font-semibold">
               {t.catalog.badge}
             </span>
@@ -48,6 +49,47 @@ export default function CollectionsPage() {
             <p className="text-sm sm:text-base text-[#1A1A1A]/70 leading-relaxed font-light">
               {t.catalog.desc}
             </p>
+          </div>
+
+          {/* Dual Campaign Banner: Women's Daily & Hot + Queer Fluid Unisex */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div 
+              onClick={() => setActiveTab("female")}
+              className={`cursor-pointer group relative rounded-2xl overflow-hidden aspect-16/9 sm:aspect-21/9 bg-[#4A1521] border transition-all duration-300 shadow-md ${
+                activeTab === "female" ? "ring-2 ring-[#4A1521] border-transparent" : "border-black/10 hover:border-[#4A1521]"
+              }`}
+            >
+              <Image
+                src="/images/story/story-balcony-burgundy-model.jpg"
+                alt="Línea Femenina V-Lush"
+                fill
+                className="object-cover opacity-85 group-hover:scale-105 group-hover:opacity-95 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-end p-6">
+                <span className="text-[10px] uppercase font-bold tracking-widest text-[#DCD4C4]">Línea Femenina • Daily & Hot</span>
+                <h3 className="font-serif text-2xl text-white">Pure Sensuality</h3>
+                <p className="text-xs text-white/80 font-light mt-1">Encaje italiano suave y puente ancho de algodón virgen hipoalergénico.</p>
+              </div>
+            </div>
+
+            <div 
+              onClick={() => setActiveTab("unisex")}
+              className={`cursor-pointer group relative rounded-2xl overflow-hidden aspect-16/9 sm:aspect-21/9 bg-[#1A1A1A] border transition-all duration-300 shadow-md ${
+                activeTab === "unisex" ? "ring-2 ring-[#1A1A1A] border-transparent" : "border-black/10 hover:border-[#1A1A1A]"
+              }`}
+            >
+              <Image
+                src="/images/details/detail-queer-model-boxer.jpg"
+                alt="Línea Fluid Unisex V-Lush"
+                fill
+                className="object-cover opacity-85 group-hover:scale-105 group-hover:opacity-95 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-end p-6">
+                <span className="text-[10px] uppercase font-bold tracking-widest text-[#DCD4C4]">Línea Unisex & Queer • Body-Affirming</span>
+                <h3 className="font-serif text-2xl text-white">Fluid Freedom</h3>
+                <p className="text-xs text-white/80 font-light mt-1">Cortes anatómicos neutros con encaje geométrico y máxima comodidad.</p>
+              </div>
+            </div>
           </div>
 
           {/* Quick Filter & Size Guide Bar */}

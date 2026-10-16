@@ -34,17 +34,35 @@ export default function StoryPage() {
         <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Visual Portrait */}
-            <div className="lg:col-span-5 relative">
+            <div className="lg:col-span-5 relative space-y-4">
               <div className="relative aspect-4/5 rounded-2xl overflow-hidden shadow-2xl border border-[#1A1A1A]/15 bg-[#EFECE6]">
                 <Image
-                  src="/images/brand/vlush-hero-grid.jpg"
-                  alt="Marie y el equipo de diseño de V-Lush"
+                  src="/images/story/story-founders-studio.jpg"
+                  alt="Marie y el equipo fundador de V-Lush en su estudio de diseño"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>
-              <div className="bg-[#ECE5D8] rounded-xl p-4 mt-4 border border-[#1A1A1A]/10 text-xs text-[#1A1A1A]/80 text-center">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="relative aspect-4/3 rounded-xl overflow-hidden border border-[#1A1A1A]/10 shadow-sm">
+                  <Image
+                    src="/images/story/story-pattern-sketching.jpg"
+                    alt="Patronaje a mano de la Gyno-Safe Zone"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative aspect-4/3 rounded-xl overflow-hidden border border-[#1A1A1A]/10 shadow-sm">
+                  <Image
+                    src="/images/story/story-vlush-tag-cotton-hand.jpg"
+                    alt="Tacto puro de algodón orgánico crudo V-Lush"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="bg-[#ECE5D8] rounded-xl p-3.5 border border-[#1A1A1A]/10 text-xs text-[#1A1A1A]/80 text-center font-medium">
                 {t.storyPage.photoLabel}
               </div>
             </div>

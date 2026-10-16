@@ -563,6 +563,24 @@ export default function PreorderCheckoutPage() {
                     </p>
                   </div>
                 </div>
+
+                {/* Sustainable Unboxing & Quality Promise */}
+                <div className="bg-white rounded-2xl overflow-hidden border border-[#1A1A1A]/10 shadow-sm">
+                  <div className="relative aspect-16/9 w-full">
+                    <Image
+                      src="/images/details/detail-unboxing-ribbon.jpg"
+                      alt="Packaging de lujo sostenible V-Lush"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-4 space-y-1 bg-[#ECE5D8]/50">
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#4A1521]">100% Plastic-Free Unboxing</span>
+                    <p className="text-xs text-[#1A1A1A]/80 leading-normal">
+                      Tu pedido incluye caja kraft de archivo, papel de semillas plantables y lazo de satén biodegradable.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           )}

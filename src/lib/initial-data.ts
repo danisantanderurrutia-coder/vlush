@@ -85,6 +85,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     image: "/images/products/strappy-sensual-set.jpg",
     images: [
       "/images/products/strappy-sensual-set.jpg",
+      "/images/details/detail-gold-hardware-strap.jpg",
       "/images/editorial/editorial-lace-top.jpg",
       "/images/editorial/editorial-black-set.jpg"
     ],
@@ -111,6 +112,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     image: "/images/products/fluid-geometric-boxer.jpg",
     images: [
       "/images/products/fluid-geometric-boxer.jpg",
+      "/images/details/detail-queer-model-boxer.jpg",
       "/images/editorial/editorial-unisex-fluid.jpg",
       "/images/editorial/editorial-balcony-robe.jpg"
     ],
@@ -159,11 +161,12 @@ export const INITIAL_PRODUCTS: Product[] = [
     line: "female",
     price: 79,
     badge: "Ahorra 17 € en Preventa",
-    image: "/images/products/trio-bundle-box.jpg",
+    image: "/images/details/detail-capsule-trio-flatlay.jpg",
     images: [
+      "/images/details/detail-capsule-trio-flatlay.jpg",
+      "/images/details/detail-unboxing-ribbon.jpg",
       "/images/products/trio-bundle-box.jpg",
-      "/images/craft/craft-vlush-luxury-box.jpg",
-      "/images/craft/craft-raw-organic-cotton.jpg"
+      "/images/craft/craft-vlush-luxury-box.jpg"
     ],
     description: "El fondo de armario íntimo definitivo para toda la semana. Empaquetado en nuestra caja kraft de diseño 100% compostable con papel de seda vegetal.",
     gussetSpecs: "Todas las piezas incorporan la Gyno-Safe Zone de algodón orgánico crudo.",
