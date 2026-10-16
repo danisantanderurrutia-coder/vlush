@@ -135,10 +135,8 @@ Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la 
 
 ### 🔑 Credenciales de Acceso al Hub (`/hub`)
 * **Portal de Acceso:** [http://localhost:3000/hub/login](http://localhost:3000/hub/login)
-* **Marie (Dirección / Psicología):** PIN `marie123`
-* **Socio (Gestión Ambiental):** PIN `partner123`
-* **PIN Maestro:** `vlush2026`
-*(El portal también cuenta con botones de acceso rápido de demostración en un solo clic).*
+* **PIN Maestro Único:** `vlush2026`
+*(La pantalla de login incluye también un botón directo de autocompletado para pruebas rápidas).*
 
 ---
 
