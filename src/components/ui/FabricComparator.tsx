@@ -60,8 +60,8 @@ export default function FabricComparator() {
                 <Image
                   src={
                     activeSide === "gusset"
-                      ? "/images/brand/vlush-hero-grid.jpg"
-                      : "/images/brand/vlush-moodboard.png"
+                      ? "/images/craft/craft-lace-cotton-texture.jpg"
+                      : "/images/craft/craft-seamstress-lace.jpg"
                   }
                   alt={
                     activeSide === "gusset"

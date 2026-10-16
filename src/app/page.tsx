@@ -263,13 +263,54 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* EDITORIAL LOOKBOOK PREVIEW */}
+        <section className="py-20 bg-[#EFECE6]/60 border-t border-[#1A1A1A]/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-[0.25em] text-[#4A1521] font-semibold">
+                Lookbook 2026
+              </span>
+              <h2 className="font-serif text-3xl sm:text-5xl text-[#1A1A1A] mt-2 mb-3">
+                Intimacy in Pure Light
+              </h2>
+              <p className="text-xs sm:text-sm text-[#1A1A1A]/70 font-light">
+                Sensualidad honesta capturada en 35mm. Diseños que respetan la intimidad del cuerpo con tejidos nobles.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+              {[
+                { src: "/images/editorial/editorial-burgundy-bed.jpg", alt: "Cheeky Burgundy en descanso matutino" },
+                { src: "/images/editorial/editorial-black-set.jpg", alt: "Conjunto Nocturne Noir sobre piel" },
+                { src: "/images/craft/craft-editorial-morning-robe.jpg", alt: "Bata de seda y lencería V-Lush" },
+                { src: "/images/editorial/editorial-unisex-fluid.jpg", alt: "Línea Fluid Unisex con encaje geométrico" },
+                { src: "/images/editorial/editorial-balcony-robe.jpg", alt: "Talle alto fluid en luz de balcón" },
+                { src: "/images/craft/craft-seamstress-lace.jpg", alt: "Confección artesanal en atelier europeo" },
+              ].map((item, idx) => (
+                <div key={idx} className="group relative aspect-4/5 rounded-xl overflow-hidden shadow-sm bg-stone-300">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2.5">
+                    <span className="text-[10px] text-white/90 font-medium leading-tight">{item.alt}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* SUSTAINABILITY & LOGISTICS HIGHLIGHT */}
         <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-6 relative">
               <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-lg border border-[#1A1A1A]/10">
                 <Image
-                  src="/images/brand/vlush-moodboard.png"
+                  src="/images/craft/craft-vlush-luxury-box.jpg"
                   alt="Packaging circular y tacto suave de algodón orgánico V-Lush"
                   fill
                   className="object-cover"

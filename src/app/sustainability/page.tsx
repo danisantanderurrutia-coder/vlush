@@ -33,8 +33,8 @@ export default function SustainabilityPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-6 relative aspect-4/3 rounded-2xl overflow-hidden shadow-xl border border-[#1A1A1A]/10 bg-[#EFECE6]">
               <Image
-                src="/images/brand/vlush-moodboard.png"
-                alt="Proceso de materiales puros y packaging compostable V-Lush"
+                src="/images/craft/craft-vlush-luxury-box.jpg"
+                alt="Packaging de lujo compostable y algodón puro V-Lush"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -81,47 +81,87 @@ export default function SustainabilityPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Step 1 */}
-              <div className="p-6 rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 space-y-3">
-                <div className="w-10 h-10 rounded-full bg-[#1A1A1A] text-[#DCD4C4] flex items-center justify-center">
-                  <Leaf className="w-5 h-5" />
+              <div className="rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 overflow-hidden flex flex-col">
+                <div className="relative aspect-16/10 w-full overflow-hidden">
+                  <Image
+                    src="/images/craft/craft-raw-organic-cotton.jpg"
+                    alt={t.sustainabilityPage.step1Title}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
-                <h4 className="font-serif text-xl text-[#1A1A1A]">{t.sustainabilityPage.step1Title}</h4>
-                <p className="text-xs text-[#1A1A1A]/70 leading-relaxed">
-                  {t.sustainabilityPage.step1Desc}
-                </p>
+                <div className="p-5 space-y-2 flex-1">
+                  <div className="w-8 h-8 rounded-full bg-[#1A1A1A] text-[#DCD4C4] flex items-center justify-center text-xs font-bold">
+                    1
+                  </div>
+                  <h4 className="font-serif text-lg text-[#1A1A1A]">{t.sustainabilityPage.step1Title}</h4>
+                  <p className="text-xs text-[#1A1A1A]/70 leading-relaxed">
+                    {t.sustainabilityPage.step1Desc}
+                  </p>
+                </div>
               </div>
 
               {/* Step 2 */}
-              <div className="p-6 rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 space-y-3">
-                <div className="w-10 h-10 rounded-full bg-[#4A1521] text-white flex items-center justify-center">
-                  <Factory className="w-5 h-5" />
+              <div className="rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 overflow-hidden flex flex-col">
+                <div className="relative aspect-16/10 w-full overflow-hidden">
+                  <Image
+                    src="/images/craft/craft-seamstress-lace.jpg"
+                    alt={t.sustainabilityPage.step2Title}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
-                <h4 className="font-serif text-xl text-[#1A1A1A]">{t.sustainabilityPage.step2Title}</h4>
-                <p className="text-xs text-[#1A1A1A]/70 leading-relaxed">
-                  {t.sustainabilityPage.step2Desc}
-                </p>
+                <div className="p-5 space-y-2 flex-1">
+                  <div className="w-8 h-8 rounded-full bg-[#4A1521] text-white flex items-center justify-center text-xs font-bold">
+                    2
+                  </div>
+                  <h4 className="font-serif text-lg text-[#1A1A1A]">{t.sustainabilityPage.step2Title}</h4>
+                  <p className="text-xs text-[#1A1A1A]/70 leading-relaxed">
+                    {t.sustainabilityPage.step2Desc}
+                  </p>
+                </div>
               </div>
 
               {/* Step 3 */}
-              <div className="p-6 rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 space-y-3">
-                <div className="w-10 h-10 rounded-full bg-[#1A1A1A] text-[#DCD4C4] flex items-center justify-center">
-                  <RefreshCw className="w-5 h-5" />
+              <div className="rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 overflow-hidden flex flex-col">
+                <div className="relative aspect-16/10 w-full overflow-hidden">
+                  <Image
+                    src="/images/craft/craft-vlush-luxury-box.jpg"
+                    alt={t.sustainabilityPage.step3Title}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
-                <h4 className="font-serif text-xl text-[#1A1A1A]">{t.sustainabilityPage.step3Title}</h4>
-                <p className="text-xs text-[#1A1A1A]/70 leading-relaxed">
-                  {t.sustainabilityPage.step3Desc}
-                </p>
+                <div className="p-5 space-y-2 flex-1">
+                  <div className="w-8 h-8 rounded-full bg-[#1A1A1A] text-[#DCD4C4] flex items-center justify-center text-xs font-bold">
+                    3
+                  </div>
+                  <h4 className="font-serif text-lg text-[#1A1A1A]">{t.sustainabilityPage.step3Title}</h4>
+                  <p className="text-xs text-[#1A1A1A]/70 leading-relaxed">
+                    {t.sustainabilityPage.step3Desc}
+                  </p>
+                </div>
               </div>
 
               {/* Step 4 */}
-              <div className="p-6 rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 space-y-3">
-                <div className="w-10 h-10 rounded-full bg-[#4A1521] text-white flex items-center justify-center">
-                  <Truck className="w-5 h-5" />
+              <div className="rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 overflow-hidden flex flex-col">
+                <div className="relative aspect-16/10 w-full overflow-hidden">
+                  <Image
+                    src="/images/craft/craft-atelier-pattern-table.jpg"
+                    alt={t.sustainabilityPage.step4Title}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
-                <h4 className="font-serif text-xl text-[#1A1A1A]">{t.sustainabilityPage.step4Title}</h4>
-                <p className="text-xs text-[#1A1A1A]/70 leading-relaxed">
-                  {t.sustainabilityPage.step4Desc}
-                </p>
+                <div className="p-5 space-y-2 flex-1">
+                  <div className="w-8 h-8 rounded-full bg-[#4A1521] text-white flex items-center justify-center text-xs font-bold">
+                    4
+                  </div>
+                  <h4 className="font-serif text-lg text-[#1A1A1A]">{t.sustainabilityPage.step4Title}</h4>
+                  <p className="text-xs text-[#1A1A1A]/70 leading-relaxed">
+                    {t.sustainabilityPage.step4Desc}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

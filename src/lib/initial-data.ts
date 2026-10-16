@@ -31,7 +31,12 @@ export const INITIAL_PRODUCTS: Product[] = [
     trioPrice: 79,
     badge: "Bestseller Preventa",
     image: "/images/products/cheeky-burgundy.jpg",
-    images: ["/images/products/cheeky-burgundy.jpg", "/images/brand/vlush-hero-grid.jpg"],
+    images: [
+      "/images/products/cheeky-burgundy.jpg",
+      "/images/editorial/editorial-burgundy-bed.jpg",
+      "/images/craft/craft-editorial-morning-robe.jpg",
+      "/images/craft/craft-lace-cotton-texture.jpg"
+    ],
     description: "Diseñado para abrazar las curvas sin marcar la cadera. El interior cuenta con nuestra firma 'Gyno-Safe Zone': 100% algodón orgánico crudo sin blanquear ni teñir que previene rozaduras y cuida tu microbiota íntima.",
     gussetSpecs: "Puente interior de 8.2 cm de ancho (vs 4.5 cm en lencería convencional). Algodón GOTS 180 gsm sin tintes sintéticos.",
     materials: {
@@ -53,7 +58,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     trioPrice: 75,
     badge: "Sensorial & Invisible",
     image: "/images/products/nocturne-noir-thong.jpg",
-    images: ["/images/products/nocturne-noir-thong.jpg", "/images/brand/vlush-hero-grid.jpg"],
+    images: [
+      "/images/products/nocturne-noir-thong.jpg",
+      "/images/editorial/editorial-black-set.jpg",
+      "/images/craft/craft-seamstress-lace.jpg"
+    ],
     description: "La silueta más atrevida con la máxima protección dermatológica. Sin costuras rígidas en los bordes y con doble capa de algodón natural crudo que neutraliza la humedad sin irritación.",
     gussetSpecs: "Puente con costura plana invertida flatlock. Cero fricción con la mucosa genital.",
     materials: {
@@ -74,7 +83,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 52,
     badge: "Edición Limitada",
     image: "/images/products/strappy-sensual-set.jpg",
-    images: ["/images/products/strappy-sensual-set.jpg", "/images/brand/vlush-hero-grid.jpg"],
+    images: [
+      "/images/products/strappy-sensual-set.jpg",
+      "/images/editorial/editorial-lace-top.jpg",
+      "/images/editorial/editorial-black-set.jpg"
+    ],
     description: "Para esas noches donde el juego visual es protagonista, pero te niegas a tolerar materiales plásticos que piquen o asfixien tu piel íntima. Bralette y braguita combinados con herrajes dorados libres de níquel.",
     gussetSpecs: "Zona íntima reforzada con algodón orgánico crudo de textura nube.",
     materials: {
@@ -96,7 +109,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     trioPrice: 85,
     badge: "Línea Unisex / Body-Affirming",
     image: "/images/products/fluid-geometric-boxer.jpg",
-    images: ["/images/products/fluid-geometric-boxer.jpg", "/images/brand/vlush-moodboard.png"],
+    images: [
+      "/images/products/fluid-geometric-boxer.jpg",
+      "/images/editorial/editorial-unisex-fluid.jpg",
+      "/images/editorial/editorial-balcony-robe.jpg"
+    ],
     description: "Ropa interior creada para cualquier corporalidad que desee sentirse sexy, estilizada y cómoda. Patrón neutro con espacio anatómico flexible y forro integral de algodón orgánico crudo.",
     gussetSpecs: "Panel central expandido de 9.5 cm de ancho con soporte suave y transpirable.",
     materials: {
@@ -118,7 +135,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     trioPrice: 79,
     badge: "Unisex Versátil",
     image: "/images/products/soft-mesh-fluid-brief.jpg",
-    images: ["/images/products/soft-mesh-fluid-brief.jpg", "/images/brand/vlush-moodboard.png"],
+    images: [
+      "/images/products/soft-mesh-fluid-brief.jpg",
+      "/images/editorial/editorial-balcony-robe.jpg",
+      "/images/editorial/editorial-unisex-fluid.jpg"
+    ],
     description: "Una prenda escultórica que abraza la pelvis con suavidad. Su cintura de banda ancha no aprieta ni enrolla, brindando una experiencia sensual y respetuosa con cualquier silueta.",
     gussetSpecs: "Forro interior extra largo para máxima protección en cualquier postura.",
     materials: {
@@ -139,7 +160,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 79,
     badge: "Ahorra 17 € en Preventa",
     image: "/images/products/trio-bundle-box.jpg",
-    images: ["/images/products/trio-bundle-box.jpg", "/images/brand/vlush-moodboard.png"],
+    images: [
+      "/images/products/trio-bundle-box.jpg",
+      "/images/craft/craft-vlush-luxury-box.jpg",
+      "/images/craft/craft-raw-organic-cotton.jpg"
+    ],
     description: "El fondo de armario íntimo definitivo para toda la semana. Empaquetado en nuestra caja kraft de diseño 100% compostable con papel de seda vegetal.",
     gussetSpecs: "Todas las piezas incorporan la Gyno-Safe Zone de algodón orgánico crudo.",
     materials: {

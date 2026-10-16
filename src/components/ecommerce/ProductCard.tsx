@@ -16,23 +16,55 @@ interface ProductCardProps {
 export default function ProductCard({ product, onSelectPreorder }: ProductCardProps) {
   const [selectedSize, setSelectedSize] = useState<string>(product.sizes[1] || product.sizes[0]);
   const [showDetails, setShowDetails] = useState(false);
+  const [activeImgIndex, setActiveImgIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const { t } = useLanguage();
 
+  const allImages = product.images && product.images.length > 0 ? product.images : [product.image];
+  // If hovered and user hasn't explicitly clicked another image, show the on-model shot (index 1)
+  const displayImage = isHovered && allImages.length > 1 && activeImgIndex === 0 ? allImages[1] : allImages[activeImgIndex] || allImages[0];
+
   return (
-    <div className="group bg-[#F5F2EB] rounded-2xl border border-[#1A1A1A]/10 overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl hover:border-[#4A1521]/30">
+    <div 
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group bg-[#F5F2EB] rounded-2xl border border-[#1A1A1A]/10 overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl hover:border-[#4A1521]/30"
+    >
       {/* Product Image Frame */}
       <div className="relative aspect-4/5 overflow-hidden bg-[#EFECE6]">
         <Image
-          src={product.image}
+          src={displayImage}
           alt={product.name}
           fill
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="object-cover transition-all duration-700 ease-out group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
 
+        {/* Multi-image indicator dots / switcher */}
+        {allImages.length > 1 && (
+          <div className="absolute top-12 right-3 z-10 flex flex-col gap-1.5 bg-black/40 backdrop-blur-md p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+            {allImages.slice(0, 3).map((img, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveImgIndex(idx);
+                }}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  (isHovered && activeImgIndex === 0 && idx === 1) || activeImgIndex === idx
+                    ? "bg-[#C5A059] scale-125"
+                    : "bg-white/60 hover:bg-white"
+                }`}
+                title={`Ver foto ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
         {/* Badge */}
         {product.badge && (
-          <div className="absolute top-3 left-3">
+          <div className="absolute top-3 left-3 z-10">
             <span className="inline-flex items-center space-x-1 bg-[#1A1A1A]/90 backdrop-blur-md text-[#F5F2EB] text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full shadow-sm">
               <Sparkles className="w-3 h-3 text-[#C5A059]" />
               <span>{product.badge}</span>
