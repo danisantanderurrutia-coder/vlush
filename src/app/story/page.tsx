@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ArrowRight, Quote } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { assetUrl } from "@/lib/utils";
 
 export default function StoryPage() {
   const { t } = useLanguage();
@@ -37,7 +38,7 @@ export default function StoryPage() {
             <div className="lg:col-span-5 relative space-y-4">
               <div className="relative aspect-4/5 rounded-2xl overflow-hidden shadow-2xl border border-[#1A1A1A]/15 bg-[#EFECE6]">
                 <Image
-                  src="/images/story/story-founders-studio.jpg"
+                  src={assetUrl("/images/story/story-founders-studio.jpg")}
                   alt="Marie y el equipo fundador de V-Lush en su estudio de diseño"
                   fill
                   className="object-cover"
@@ -47,7 +48,7 @@ export default function StoryPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="relative aspect-4/3 rounded-xl overflow-hidden border border-[#1A1A1A]/10 shadow-sm">
                   <Image
-                    src="/images/story/story-pattern-sketching.jpg"
+                    src={assetUrl("/images/story/story-pattern-sketching.jpg")}
                     alt="Patronaje a mano de la Gyno-Safe Zone"
                     fill
                     className="object-cover"
@@ -55,7 +56,7 @@ export default function StoryPage() {
                 </div>
                 <div className="relative aspect-4/3 rounded-xl overflow-hidden border border-[#1A1A1A]/10 shadow-sm">
                   <Image
-                    src="/images/story/story-vlush-tag-cotton-hand.jpg"
+                    src={assetUrl("/images/story/story-vlush-tag-cotton-hand.jpg")}
                     alt="Tacto puro de algodón orgánico crudo V-Lush"
                     fill
                     className="object-cover"

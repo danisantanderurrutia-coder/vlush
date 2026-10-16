@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Sparkles, Shield, Eye, CheckCircle2, AlertTriangle, Layers } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { assetUrl } from "@/lib/utils";
 
 export default function FabricComparator() {
   const [activeSide, setActiveSide] = useState<"exterior" | "gusset">("gusset");
@@ -60,8 +61,8 @@ export default function FabricComparator() {
                 <Image
                   src={
                     activeSide === "gusset"
-                      ? "/images/craft/craft-lace-cotton-texture.jpg"
-                      : "/images/craft/craft-seamstress-lace.jpg"
+                      ? assetUrl("/images/craft/craft-lace-cotton-texture.jpg")
+                      : assetUrl("/images/craft/craft-seamstress-lace.jpg")
                   }
                   alt={
                     activeSide === "gusset"

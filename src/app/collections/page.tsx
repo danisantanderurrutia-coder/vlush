@@ -10,6 +10,7 @@ import BatchProgress from "@/components/ecommerce/BatchProgress";
 import { INITIAL_PRODUCTS, Product } from "@/lib/initial-data";
 import { Ruler, Filter } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { assetUrl } from "@/lib/utils";
 
 export default function CollectionsPage() {
   const { t } = useLanguage();
@@ -60,7 +61,7 @@ export default function CollectionsPage() {
               }`}
             >
               <Image
-                src="/images/story/story-balcony-burgundy-model.jpg"
+                src={assetUrl("/images/story/story-balcony-burgundy-model.jpg")}
                 alt="Línea Femenina V-Lush"
                 fill
                 className="object-cover opacity-85 group-hover:scale-105 group-hover:opacity-95 transition-all duration-700"
@@ -79,7 +80,7 @@ export default function CollectionsPage() {
               }`}
             >
               <Image
-                src="/images/details/detail-queer-model-boxer.jpg"
+                src={assetUrl("/images/details/detail-queer-model-boxer.jpg")}
                 alt="Línea Fluid Unisex V-Lush"
                 fill
                 className="object-cover opacity-85 group-hover:scale-105 group-hover:opacity-95 transition-all duration-700"

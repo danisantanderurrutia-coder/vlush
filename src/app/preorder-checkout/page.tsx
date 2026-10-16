@@ -8,7 +8,7 @@ import { submitPreorder } from "@/lib/services";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { INITIAL_PRODUCTS } from "@/lib/initial-data";
-import { formatEUR } from "@/lib/utils";
+import { formatEUR, assetUrl } from "@/lib/utils";
 import {
   ShieldCheck,
   Truck,
@@ -564,7 +564,7 @@ export default function PreorderCheckoutPage() {
                 <div className="bg-white rounded-2xl overflow-hidden border border-[#1A1A1A]/10 shadow-sm">
                   <div className="relative aspect-16/9 w-full">
                     <Image
-                      src="/images/details/detail-unboxing-ribbon.jpg"
+                      src={assetUrl("/images/details/detail-unboxing-ribbon.jpg")}
                       alt="Packaging de lujo sostenible V-Lush"
                       fill
                       className="object-cover"

@@ -13,6 +13,7 @@ import { INITIAL_PRODUCTS, Product } from "@/lib/initial-data";
 import { Sparkles, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { getPreorders } from "@/lib/services";
+import { assetUrl } from "@/lib/utils";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -114,7 +115,7 @@ export default function HomePage() {
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#1A1A1A]/15 bg-[#EFECE6]">
                   <div className="relative aspect-4/5 w-full">
                     <Image
-                      src="/images/brand/vlush-hero-grid.jpg"
+                      src={assetUrl("/images/brand/vlush-hero-grid.jpg")}
                       alt="Colección V-Lush Lingerie - Encaje sensual y puente de algodón crudo Gyno-Safe"
                       fill
                       priority
@@ -278,12 +279,12 @@ export default function HomePage() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
               {[
-                { src: "/images/editorial/editorial-burgundy-bed.jpg", alt: "Cheeky Burgundy en descanso matutino" },
-                { src: "/images/editorial/editorial-black-set.jpg", alt: "Conjunto Nocturne Noir sobre piel" },
-                { src: "/images/craft/craft-editorial-morning-robe.jpg", alt: "Bata de seda y lencería V-Lush" },
-                { src: "/images/editorial/editorial-unisex-fluid.jpg", alt: "Línea Fluid Unisex con encaje geométrico" },
-                { src: "/images/editorial/editorial-balcony-robe.jpg", alt: "Talle alto fluid en luz de balcón" },
-                { src: "/images/craft/craft-seamstress-lace.jpg", alt: "Confección artesanal en atelier europeo" },
+                { src: assetUrl("/images/editorial/editorial-burgundy-bed.jpg"), alt: "Cheeky Burgundy en descanso matutino" },
+                { src: assetUrl("/images/editorial/editorial-black-set.jpg"), alt: "Conjunto Nocturne Noir sobre piel" },
+                { src: assetUrl("/images/craft/craft-editorial-morning-robe.jpg"), alt: "Bata de seda y lencería V-Lush" },
+                { src: assetUrl("/images/editorial/editorial-unisex-fluid.jpg"), alt: "Línea Fluid Unisex con encaje geométrico" },
+                { src: assetUrl("/images/editorial/editorial-balcony-robe.jpg"), alt: "Talle alto fluid en luz de balcón" },
+                { src: assetUrl("/images/craft/craft-seamstress-lace.jpg"), alt: "Confección artesanal en atelier europeo" },
               ].map((item, idx) => (
                 <div key={idx} className="group relative aspect-4/5 rounded-xl overflow-hidden shadow-sm bg-stone-300">
                   <Image
@@ -308,7 +309,7 @@ export default function HomePage() {
             <div className="lg:col-span-6 relative">
               <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-lg border border-[#1A1A1A]/10">
                 <Image
-                  src="/images/craft/craft-vlush-luxury-box.jpg"
+                  src={assetUrl("/images/craft/craft-vlush-luxury-box.jpg")}
                   alt="Packaging circular y tacto suave de algodón orgánico V-Lush"
                   fill
                   className="object-cover"

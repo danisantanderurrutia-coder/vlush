@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "V-Lush",
     images: [
       {
-        url: "/images/brand/vlush-hero-grid.jpg",
+        url: (process.env.NEXT_PUBLIC_BASE_PATH || "") + "/images/brand/vlush-hero-grid.jpg",
         width: 1200,
         height: 800,
         alt: "V-Lush High-End Sensual Lingerie",

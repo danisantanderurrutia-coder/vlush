@@ -26,3 +26,22 @@ export function formatDate(dateString: string): string {
     return dateString;
   }
 }
+
+/**
+ * Resolves static assets safely across local development (/) and GitHub Pages (/vlush/)
+ */
+export function assetUrl(path: string): string {
+  if (!path) return "";
+  if (path.startsWith("http://") || path.startsWith("https://") || path.startsWith("data:")) {
+    return path;
+  }
+  const clean = path.startsWith("/") ? path : `/${path}`;
+  let base = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  if (!base && typeof window !== "undefined" && window.location.pathname.startsWith("/vlush")) {
+    base = "/vlush";
+  }
+  if (base && clean.startsWith(`${base}/`)) {
+    return clean;
+  }
+  return `${base}${clean}`;
+}

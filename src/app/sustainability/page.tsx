@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Leaf, Truck, Factory, RefreshCw, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { assetUrl } from "@/lib/utils";
 
 export default function SustainabilityPage() {
   const { t } = useLanguage();
@@ -33,7 +34,7 @@ export default function SustainabilityPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-6 relative aspect-4/3 rounded-2xl overflow-hidden shadow-xl border border-[#1A1A1A]/10 bg-[#EFECE6]">
               <Image
-                src="/images/craft/craft-vlush-luxury-box.jpg"
+                src={assetUrl("/images/craft/craft-vlush-luxury-box.jpg")}
                 alt="Packaging de lujo compostable y algodón puro V-Lush"
                 fill
                 className="object-cover"
@@ -84,7 +85,7 @@ export default function SustainabilityPage() {
               <div className="rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 overflow-hidden flex flex-col">
                 <div className="relative aspect-16/10 w-full overflow-hidden">
                   <Image
-                    src="/images/craft/craft-raw-organic-cotton.jpg"
+                    src={assetUrl("/images/craft/craft-raw-organic-cotton.jpg")}
                     alt={t.sustainabilityPage.step1Title}
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-500"
@@ -105,7 +106,7 @@ export default function SustainabilityPage() {
               <div className="rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 overflow-hidden flex flex-col">
                 <div className="relative aspect-16/10 w-full overflow-hidden">
                   <Image
-                    src="/images/craft/craft-seamstress-lace.jpg"
+                    src={assetUrl("/images/craft/craft-seamstress-lace.jpg")}
                     alt={t.sustainabilityPage.step2Title}
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-500"
@@ -126,7 +127,7 @@ export default function SustainabilityPage() {
               <div className="rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 overflow-hidden flex flex-col">
                 <div className="relative aspect-16/10 w-full overflow-hidden">
                   <Image
-                    src="/images/craft/craft-vlush-luxury-box.jpg"
+                    src={assetUrl("/images/craft/craft-vlush-luxury-box.jpg")}
                     alt={t.sustainabilityPage.step3Title}
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-500"
@@ -147,7 +148,7 @@ export default function SustainabilityPage() {
               <div className="rounded-2xl bg-[#EFECE6] border border-[#1A1A1A]/10 overflow-hidden flex flex-col">
                 <div className="relative aspect-16/10 w-full overflow-hidden">
                   <Image
-                    src="/images/craft/craft-atelier-pattern-table.jpg"
+                    src={assetUrl("/images/craft/craft-atelier-pattern-table.jpg")}
                     alt={t.sustainabilityPage.step4Title}
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-500"

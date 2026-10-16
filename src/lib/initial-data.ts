@@ -21,7 +21,9 @@ export interface Product {
   reserved: number;
 }
 
-export const INITIAL_PRODUCTS: Product[] = [
+import { assetUrl } from "./utils";
+
+const RAW_PRODUCTS: Product[] = [
   {
     id: "cheeky-burgundy",
     name: "Cheeky Burgundy Lace",
@@ -181,6 +183,12 @@ export const INITIAL_PRODUCTS: Product[] = [
     reserved: 21,
   },
 ];
+
+export const INITIAL_PRODUCTS: Product[] = RAW_PRODUCTS.map((p) => ({
+  ...p,
+  image: assetUrl(p.image),
+  images: (p.images || [p.image]).map(assetUrl),
+}));
 
 export interface Task {
   id: string;
