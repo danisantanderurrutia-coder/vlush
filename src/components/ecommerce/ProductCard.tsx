@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/lib/initial-data";
 import { formatEUR } from "@/lib/utils";
-import { Sparkles, Shield, ArrowUpRight, Check } from "lucide-react";
+import { Sparkles, Shield, ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ProductCardProps {
   product: Product;
@@ -15,6 +16,7 @@ interface ProductCardProps {
 export default function ProductCard({ product, onSelectPreorder }: ProductCardProps) {
   const [selectedSize, setSelectedSize] = useState<string>(product.sizes[1] || product.sizes[0]);
   const [showDetails, setShowDetails] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <div className="group bg-[#F5F2EB] rounded-2xl border border-[#1A1A1A]/10 overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl hover:border-[#4A1521]/30">
@@ -47,7 +49,7 @@ export default function ProductCard({ product, onSelectPreorder }: ProductCardPr
                 : "bg-[#1A1A1A] text-[#DCD4C4]"
             }`}
           >
-            {product.line === "female" ? "Línea Femenina" : "Línea Unisex & Fluid"}
+            {product.line === "female" ? t.product.lineFemale : t.product.lineUnisex}
           </span>
         </div>
 
@@ -62,7 +64,7 @@ export default function ProductCard({ product, onSelectPreorder }: ProductCardPr
             onClick={() => setShowDetails(!showDetails)}
             className="text-[10px] text-[#4A1521] font-bold uppercase underline hover:text-[#1A1A1A] ml-2 shrink-0"
           >
-            {showDetails ? "Cerrar" : "Info"}
+            {showDetails ? t.product.closeBtn : t.product.infoBtn}
           </button>
         </div>
       </div>
@@ -71,15 +73,15 @@ export default function ProductCard({ product, onSelectPreorder }: ProductCardPr
       {showDetails && (
         <div className="bg-[#ECE5D8] p-4 text-xs border-y border-[#1A1A1A]/10 space-y-2 animate-fade-in">
           <div>
-            <span className="font-bold text-[#4A1521] uppercase text-[10px]">Puente Interior:</span>
+            <span className="font-bold text-[#4A1521] uppercase text-[10px]">{t.product.gussetLabel}:</span>
             <p className="text-[#1A1A1A]/80">{product.materials.gusset}</p>
           </div>
           <div>
-            <span className="font-bold text-[#1A1A1A] uppercase text-[10px]">Exterior:</span>
+            <span className="font-bold text-[#1A1A1A] uppercase text-[10px]">{t.product.outerLabel}:</span>
             <p className="text-[#1A1A1A]/80">{product.materials.outer}</p>
           </div>
           <div>
-            <span className="font-bold text-[#1A1A1A] uppercase text-[10px]">Origen:</span>
+            <span className="font-bold text-[#1A1A1A] uppercase text-[10px]">{t.product.originLabel}:</span>
             <p className="text-[#1A1A1A]/80">{product.materials.origin}</p>
           </div>
         </div>
@@ -98,7 +100,7 @@ export default function ProductCard({ product, onSelectPreorder }: ProductCardPr
               </span>
               {product.trioPrice && (
                 <p className="text-[10px] text-[#4A1521] font-semibold">
-                  Trío: {formatEUR(product.trioPrice)}
+                  3-Pack: {formatEUR(product.trioPrice)}
                 </p>
               )}
             </div>
@@ -111,7 +113,7 @@ export default function ProductCard({ product, onSelectPreorder }: ProductCardPr
         {/* Size Selector */}
         <div className="space-y-2 pt-2 border-t border-[#1A1A1A]/10">
           <div className="flex justify-between items-center text-[11px]">
-            <span className="text-[#1A1A1A]/60 font-medium">Seleccionar Talla:</span>
+            <span className="text-[#1A1A1A]/60 font-medium">{t.product.selectSize}:</span>
             <span className="font-bold text-[#4A1521]">{selectedSize}</span>
           </div>
 
@@ -141,7 +143,7 @@ export default function ProductCard({ product, onSelectPreorder }: ProductCardPr
               onClick={() => onSelectPreorder(product, selectedSize)}
               className="w-full inline-flex items-center justify-center space-x-2 bg-[#4A1521] hover:bg-[#360E17] text-[#F5F2EB] py-3 rounded-full text-xs uppercase tracking-wider font-semibold transition-all active:scale-95 shadow-sm"
             >
-              <span>Reservar en Preventa</span>
+              <span>{t.product.reserveBtn}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
           ) : (
@@ -149,7 +151,7 @@ export default function ProductCard({ product, onSelectPreorder }: ProductCardPr
               href={`/preorder-checkout?productId=${product.id}&size=${selectedSize}`}
               className="w-full inline-flex items-center justify-center space-x-2 bg-[#4A1521] hover:bg-[#360E17] text-[#F5F2EB] py-3 rounded-full text-xs uppercase tracking-wider font-semibold transition-all active:scale-95 shadow-sm text-center"
             >
-              <span>Reservar en Preventa</span>
+              <span>{t.product.reserveBtn}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
           )}

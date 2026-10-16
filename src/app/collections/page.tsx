@@ -7,9 +7,11 @@ import ProductCard from "@/components/ecommerce/ProductCard";
 import QuickPreorderModal from "@/components/ecommerce/QuickPreorderModal";
 import BatchProgress from "@/components/ecommerce/BatchProgress";
 import { INITIAL_PRODUCTS, Product } from "@/lib/initial-data";
-import { Sparkles, Ruler, Shield, Layers, Filter } from "lucide-react";
+import { Ruler, Filter } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function CollectionsPage() {
+  const { t } = useLanguage();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,13 +40,13 @@ export default function CollectionsPage() {
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="text-xs uppercase tracking-[0.25em] text-[#4A1521] font-semibold">
-              Edición Pre-Order Lote #01
+              {t.catalog.badge}
             </span>
             <h1 className="font-serif text-4xl sm:text-6xl text-[#1A1A1A] mt-2 mb-4">
-              Colección V-Lush
+              {t.catalog.title}
             </h1>
             <p className="text-sm sm:text-base text-[#1A1A1A]/70 leading-relaxed font-light">
-              Telas nobles de tacto sensorial exterior y la pureza biológica del algodón virgen en contacto con tu mucosa. Diseñado para cuerpos libres de tabúes y pieles exigentes.
+              {t.catalog.desc}
             </p>
           </div>
 
@@ -52,7 +54,7 @@ export default function CollectionsPage() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-8 mb-10 border-b border-[#1A1A1A]/10">
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-xs text-[#1A1A1A]/50 font-medium flex items-center mr-1">
-                <Filter className="w-3.5 h-3.5 mr-1" /> Filtrar:
+                <Filter className="w-3.5 h-3.5 mr-1" />
               </span>
               <button
                 onClick={() => setActiveTab("all")}
@@ -62,7 +64,7 @@ export default function CollectionsPage() {
                     : "bg-[#EFECE6] text-[#1A1A1A] hover:bg-[#DCD4C4]"
                 }`}
               >
-                Todas las Siluetas
+                {t.catalog.filterAll}
               </button>
               <button
                 onClick={() => setActiveTab("female")}
@@ -72,7 +74,7 @@ export default function CollectionsPage() {
                     : "bg-[#EFECE6] text-[#1A1A1A] hover:bg-[#DCD4C4]"
                 }`}
               >
-                Línea Femenina (Cheeky, Thong, Strappy)
+                {t.catalog.filterFemale}
               </button>
               <button
                 onClick={() => setActiveTab("unisex")}
@@ -82,7 +84,7 @@ export default function CollectionsPage() {
                     : "bg-[#EFECE6] text-[#1A1A1A] hover:bg-[#DCD4C4]"
                 }`}
               >
-                Línea Unisex / Fluid (Anatomical)
+                {t.catalog.filterUnisex}
               </button>
               <button
                 onClick={() => setActiveTab("trios")}
@@ -92,7 +94,7 @@ export default function CollectionsPage() {
                     : "bg-[#EFECE6] text-[#1A1A1A] hover:bg-[#DCD4C4]"
                 }`}
               >
-                Packs de 3 (75 € - 85 €)
+                {t.catalog.filterTrios}
               </button>
             </div>
 
@@ -101,7 +103,7 @@ export default function CollectionsPage() {
               className="inline-flex items-center space-x-1.5 text-xs text-[#4A1521] hover:text-[#1A1A1A] font-semibold underline shrink-0"
             >
               <Ruler className="w-4 h-4" />
-              <span>{showSizeGuide ? "Ocultar Guía de Tallas" : "Guía de Tallas & Ajuste Anatómico"}</span>
+              <span>{showSizeGuide ? t.catalog.sizeGuideHide : t.catalog.sizeGuideBtn}</span>
             </button>
           </div>
 
@@ -110,24 +112,24 @@ export default function CollectionsPage() {
             <div className="mb-12 p-6 rounded-2xl bg-[#ECE5D8] border border-[#1A1A1A]/10 text-xs animate-fade-in space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="font-serif text-lg text-[#1A1A1A] font-bold">
-                  Guía Anatómica de Medidas V-Lush (XS - XXL)
+                  {t.catalog.sizeGuideTitle}
                 </h3>
                 <span className="text-[10px] text-[#4A1521] uppercase font-bold tracking-wider">
-                  Elasticidad Multidireccional Soft-Touch
+                  {t.catalog.sizeGuideBadge}
                 </span>
               </div>
               <p className="text-[#1A1A1A]/75">
-                Nuestras prendas cuentan con un 12-15% de elastano de alta memoria. Si estás entre dos tallas, recomendamos elegir la menor si prefieres un ajuste ceñido o la mayor para máxima holgura en descanso.
+                {t.catalog.sizeGuideDesc}
               </p>
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="border-b border-[#1A1A1A]/20 text-[11px] font-bold uppercase text-[#1A1A1A]">
-                      <th className="py-2 pr-4">Talla</th>
-                      <th className="py-2 pr-4">Cadera (cm)</th>
-                      <th className="py-2 pr-4">Cintura (cm)</th>
-                      <th className="py-2 pr-4">Equivalencia UE</th>
-                      <th className="py-2">Ancho Puente Gusset</th>
+                      <th className="py-2 pr-4">{t.catalog.colSize}</th>
+                      <th className="py-2 pr-4">{t.catalog.colHips}</th>
+                      <th className="py-2 pr-4">{t.catalog.colWaist}</th>
+                      <th className="py-2 pr-4">{t.catalog.colEu}</th>
+                      <th className="py-2">{t.catalog.colGusset}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#1A1A1A]/10 text-[11px]">

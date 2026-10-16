@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Sparkles, Clock, CheckCircle, Gift, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface BatchProgressProps {
   currentReserved?: number;
@@ -14,6 +15,7 @@ export default function BatchProgress({
   totalGoal = 100,
   onOpenQuickOrder,
 }: BatchProgressProps) {
+  const { t } = useLanguage();
   const percentage = Math.min(Math.round((currentReserved / totalGoal) * 100), 100);
   const remaining = totalGoal - currentReserved;
 
@@ -27,13 +29,13 @@ export default function BatchProgress({
           <div>
             <div className="inline-flex items-center space-x-2 bg-white/10 px-3 py-1 rounded-full text-xs tracking-wider uppercase font-semibold text-[#ECE5D8] mb-2">
               <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-              <span>Campaña de Preventa Oficial • Lote Piloto #01</span>
+              <span>{t.batch.pilotBadge}</span>
             </div>
             <h3 className="font-serif text-2xl sm:text-3xl text-white">
-              Cofinancia la primera tirada artesanal europea
+              {t.batch.title}
             </h3>
             <p className="text-xs sm:text-sm text-[#ECE5D8]/80 mt-1 max-w-xl">
-              Producimos bajo demanda ética para evitar sobreproducción. Cada reserva asegura los metros de algodón crudo GOTS y el tiempo de confección de nuestras costureras en Braga y Łódź.
+              {t.batch.desc}
             </p>
           </div>
 
@@ -43,7 +45,7 @@ export default function BatchProgress({
             </span>
             <span className="text-xl sm:text-2xl text-[#ECE5D8]/70 font-light">/{totalGoal}</span>
             <p className="text-xs uppercase tracking-widest text-[#ECE5D8]/70 mt-0.5">
-              Unidades Reservadas
+              {t.batch.reservedLabel}
             </p>
           </div>
         </div>
@@ -53,10 +55,10 @@ export default function BatchProgress({
           <div className="flex justify-between items-center text-xs font-medium text-[#ECE5D8]/90">
             <span className="flex items-center space-x-1">
               <Clock className="w-3.5 h-3.5" />
-              <span>Estado: <strong>{percentage}% completado</strong></span>
+              <span>{t.batch.statusLabel}: <strong>{percentage}%</strong></span>
             </span>
             <span>
-              Faltan solo <strong className="text-white underline">{remaining} prendas</strong> para cerrar el lote
+              {t.batch.remainingLabel} <strong className="text-white underline">{remaining}</strong>
             </span>
           </div>
 
@@ -72,15 +74,15 @@ export default function BatchProgress({
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-white/15 text-xs text-[#ECE5D8]/90 mb-6">
           <div className="flex items-center space-x-2">
             <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>Precio exclusivo con hasta 20% de descuento</span>
+            <span>{t.batch.perk1}</span>
           </div>
           <div className="flex items-center space-x-2">
             <Gift className="w-4 h-4 text-[#C5A059] shrink-0" />
-            <span>Caja kraft numerada 100% compostable</span>
+            <span>{t.batch.perk2}</span>
           </div>
           <div className="flex items-center space-x-2">
             <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>Entrega prioritaria DHL GoGreen (Diciembre)</span>
+            <span>{t.batch.perk3}</span>
           </div>
         </div>
 
@@ -91,7 +93,7 @@ export default function BatchProgress({
               onClick={onOpenQuickOrder}
               className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-[#F5F2EB] hover:bg-white text-[#1A1A1A] px-7 py-3 rounded-full text-xs uppercase tracking-widest font-bold shadow-md transition-all active:scale-95"
             >
-              <span>Reservar Mi Talla Ahora</span>
+              <span>{t.batch.ctaReserve}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
@@ -99,7 +101,7 @@ export default function BatchProgress({
               href="/preorder-checkout"
               className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-[#F5F2EB] hover:bg-white text-[#1A1A1A] px-7 py-3 rounded-full text-xs uppercase tracking-widest font-bold shadow-md transition-all active:scale-95"
             >
-              <span>Reservar Mi Talla Ahora</span>
+              <span>{t.batch.ctaReserve}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           )}
@@ -108,7 +110,7 @@ export default function BatchProgress({
             href="/collections"
             className="w-full sm:w-auto inline-flex items-center justify-center space-x-1.5 text-xs uppercase tracking-wider text-white/80 hover:text-white px-5 py-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
           >
-            <span>Ver Catálogo Completo</span>
+            <span>{t.batch.ctaCatalog}</span>
           </Link>
         </div>
       </div>

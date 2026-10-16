@@ -10,9 +10,11 @@ import BatchProgress from "@/components/ecommerce/BatchProgress";
 import ProductCard from "@/components/ecommerce/ProductCard";
 import QuickPreorderModal from "@/components/ecommerce/QuickPreorderModal";
 import { INITIAL_PRODUCTS, Product } from "@/lib/initial-data";
-import { Sparkles, Shield, Heart, ArrowRight, CheckCircle2, Star } from "lucide-react";
+import { Sparkles, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HomePage() {
+  const { t } = useLanguage();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,18 +63,18 @@ export default function HomePage() {
               <div className="lg:col-span-7 space-y-6">
                 <div className="inline-flex items-center space-x-2 bg-[#EFECE6] border border-[#1A1A1A]/10 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#4A1521]">
                   <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-                  <span>Alta Costura Íntima • Gyno-Safe & Body-Affirming</span>
+                  <span>{t.hero.badge}</span>
                 </div>
 
                 <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-[#1A1A1A]">
-                  Pura donde importa. <br />
+                  {t.hero.headlinePart1} <br />
                   <span className="italic font-normal text-[#4A1521]">
-                    Sensual en todo lo demás.
+                    {t.hero.headlinePart2}
                   </span>
                 </h1>
 
                 <p className="text-base sm:text-lg text-[#1A1A1A]/75 max-w-xl leading-relaxed font-light">
-                  Lencería de diseño sensual europeo con un santuario interior: puente de 100% algodón orgánico crudo sin teñir ni clorar. La libertad de sentirte ardiente sin pagar el peaje de la irritación.
+                  {t.hero.subheadline}
                 </p>
 
                 {/* Founder Micro-Sign */}
@@ -86,8 +88,8 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div>
-                    <p className="font-semibold text-[#1A1A1A]">Creado por Marie & Socio</p>
-                    <p className="text-[11px] text-[#1A1A1A]/60">Psicología Conductual & Protección Ambiental</p>
+                    <p className="font-semibold text-[#1A1A1A]">{t.hero.foundersBadge}</p>
+                    <p className="text-[11px] text-[#1A1A1A]/60">{t.hero.foundersCreds}</p>
                   </div>
                 </div>
 
@@ -97,14 +99,14 @@ export default function HomePage() {
                     href="/preorder-checkout"
                     className="inline-flex items-center justify-center space-x-2 bg-[#4A1521] hover:bg-[#360E17] text-[#F5F2EB] px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold shadow-lg shadow-[#4A1521]/15 transition-transform active:scale-95"
                   >
-                    <span>Reservar Mi Prenda (Preventa)</span>
+                    <span>{t.hero.ctaPreorder}</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link
                     href="/collections"
                     className="inline-flex items-center justify-center space-x-2 bg-[#EFECE6] hover:bg-white text-[#1A1A1A] px-7 py-4 rounded-full text-xs uppercase tracking-widest font-bold border border-[#1A1A1A]/15 transition-colors"
                   >
-                    <span>Explorar Catálogo</span>
+                    <span>{t.hero.ctaExplore}</span>
                   </Link>
                 </div>
               </div>
@@ -128,14 +130,14 @@ export default function HomePage() {
                     <div className="flex items-center justify-between font-serif text-sm font-semibold text-[#4A1521]">
                       <span className="flex items-center space-x-1.5">
                         <Shield className="w-4 h-4" />
-                        <span>Innovación: Gyno-Safe Gusset</span>
+                        <span>{t.hero.gussetFeatureTitle}</span>
                       </span>
                       <span className="text-[10px] uppercase font-sans tracking-wider bg-[#4A1521] text-white px-2 py-0.5 rounded-full">
-                        Patrón Registrado
+                        {t.hero.registeredPattern}
                       </span>
                     </div>
                     <p className="text-[11px] text-[#1A1A1A]/70 leading-normal">
-                      Puente ensanchado 8.2 cm de algodón virgen sin blanquear. Cero tintes, cero irritación.
+                      {t.hero.gussetFeatureDesc}
                     </p>
                   </div>
                 </div>
@@ -164,13 +166,13 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
               <span className="text-xs uppercase tracking-[0.25em] text-[#4A1521] font-semibold">
-                Lanzamiento Limitado
+                {t.catalog.badge}
               </span>
               <h2 className="font-serif text-3xl sm:text-5xl tracking-tight text-[#1A1A1A] mt-1">
-                Catálogo de Preventa (Lote #01)
+                {t.catalog.title}
               </h2>
               <p className="text-sm text-[#1A1A1A]/70 mt-1 max-w-md">
-                Precios especiales de co-fundación. Reserva ahora y recibe en Diciembre con packaging compostable de edición especial.
+                {t.catalog.desc}
               </p>
             </div>
 
@@ -184,7 +186,7 @@ export default function HomePage() {
                     : "bg-[#EFECE6] text-[#1A1A1A] hover:bg-[#DCD4C4]"
                 }`}
               >
-                Todas las Piezas
+                {t.catalog.filterAll}
               </button>
               <button
                 onClick={() => setActiveCategory("female")}
@@ -194,7 +196,7 @@ export default function HomePage() {
                     : "bg-[#EFECE6] text-[#1A1A1A] hover:bg-[#DCD4C4]"
                 }`}
               >
-                Línea Femenina
+                {t.catalog.filterFemale}
               </button>
               <button
                 onClick={() => setActiveCategory("unisex")}
@@ -204,7 +206,7 @@ export default function HomePage() {
                     : "bg-[#EFECE6] text-[#1A1A1A] hover:bg-[#DCD4C4]"
                 }`}
               >
-                Línea Unisex & Fluid
+                {t.catalog.filterUnisex}
               </button>
               <button
                 onClick={() => setActiveCategory("bundles")}
@@ -214,7 +216,7 @@ export default function HomePage() {
                     : "bg-[#EFECE6] text-[#1A1A1A] hover:bg-[#DCD4C4]"
                 }`}
               >
-                Packs Trío
+                {t.catalog.filterTrios}
               </button>
             </div>
           </div>
@@ -235,7 +237,7 @@ export default function HomePage() {
               href="/collections"
               className="inline-flex items-center space-x-2 text-xs uppercase tracking-widest font-bold text-[#4A1521] hover:text-[#1A1A1A] pb-1 border-b-2 border-[#4A1521] transition-colors"
             >
-              <span>Ver todas las especificaciones y guía de tallas</span>
+              <span>{t.catalog.seeAllLink}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -245,18 +247,18 @@ export default function HomePage() {
         <section className="bg-[#1A1A1A] text-[#F5F2EB] py-24 border-y border-black">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
             <span className="text-xs uppercase tracking-[0.3em] text-[#DCD4C4] font-semibold">
-              El Manifiesto V-Lush
+              {t.manifesto.badge}
             </span>
             <blockquote className="font-serif text-3xl sm:text-5xl leading-tight text-white font-light italic">
-              &ldquo;Tu piel íntima absorbe químicos más rápido que cualquier otra parte de tu cuerpo. No aceptamos que debas elegir entre sentirte deseada o sentirte sana.&rdquo;
+              {t.manifesto.quote}
             </blockquote>
             <p className="text-sm sm:text-base text-[#ECE5D8]/80 max-w-2xl mx-auto leading-relaxed">
-              Marie aplicó sus estudios en psicología del bienestar y experiencia en negocios para entender la relación íntima entre autoestima y salud corporal. Su socio aportó el rigor de la gestión ambiental: eliminar los microplásticos del packaging y confeccionar exclusivamente en la Unión Europea.
+              {t.manifesto.desc}
             </p>
             <div className="pt-4 flex justify-center items-center space-x-6 text-xs text-[#DCD4C4]">
-              <span>✓ Talleres en Braga & Łódź</span>
-              <span>✓ Algodón GOTS 100% Virgen</span>
-              <span>✓ Packaging Sin Plástico</span>
+              <span>✓ {t.manifesto.point1}</span>
+              <span>✓ {t.manifesto.point2}</span>
+              <span>✓ {t.manifesto.point3}</span>
             </div>
           </div>
         </section>
@@ -278,32 +280,32 @@ export default function HomePage() {
 
             <div className="lg:col-span-6 space-y-6">
               <span className="text-xs uppercase tracking-[0.25em] text-[#4A1521] font-semibold">
-                Cadena de Suministro Consciente
+                {t.sustainabilitySection.badge}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl text-[#1A1A1A]">
-                Empaquetado en la tierra, entregado sin huella
+                {t.sustainabilitySection.title}
               </h2>
               <p className="text-sm text-[#1A1A1A]/75 leading-relaxed">
-                Cada pedido de preventa se entrega en nuestra caja kraft de cartón reciclado FSC con cintas de almidón de patata y papel de seda libre de ácido. 100% biodegradable en tu compost casero.
+                {t.sustainabilitySection.desc}
               </p>
 
               <div className="space-y-3 pt-2">
                 <div className="flex items-start space-x-3 text-xs">
                   <CheckCircle2 className="w-4 h-4 text-emerald-800 shrink-0 mt-0.5" />
                   <span>
-                    <strong>Producción ética en Europa:</strong> Confección en Portugal y Polonia con salarios justos y condiciones de trabajo transparentes.
+                    <strong>{t.sustainabilitySection.check1Title}:</strong> {t.sustainabilitySection.check1Desc}
                   </span>
                 </div>
                 <div className="flex items-start space-x-3 text-xs">
                   <CheckCircle2 className="w-4 h-4 text-emerald-800 shrink-0 mt-0.5" />
                   <span>
-                    <strong>DHL GoGreen:</strong> Cada gramo de CO2 emitido durante el envío dentro de la UE se compensa a través de proyectos climáticos certificados.
+                    <strong>{t.sustainabilitySection.check2Title}:</strong> {t.sustainabilitySection.check2Desc}
                   </span>
                 </div>
                 <div className="flex items-start space-x-3 text-xs">
                   <CheckCircle2 className="w-4 h-4 text-emerald-800 shrink-0 mt-0.5" />
                   <span>
-                    <strong>Cero sobreproducción:</strong> Fabricamos exclusivamente lo que nuestra comunidad cofinancia en la preventa.
+                    <strong>{t.sustainabilitySection.check3Title}:</strong> {t.sustainabilitySection.check3Desc}
                   </span>
                 </div>
               </div>
@@ -313,7 +315,7 @@ export default function HomePage() {
                   href="/sustainability"
                   className="inline-flex items-center space-x-2 text-xs uppercase tracking-widest font-bold text-[#4A1521] hover:text-[#1A1A1A]"
                 >
-                  <span>Conoce los detalles de nuestra auditoría ecológica</span>
+                  <span>{t.sustainabilitySection.linkAudit}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>

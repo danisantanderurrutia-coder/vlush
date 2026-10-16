@@ -11,7 +11,6 @@ import { formatEUR } from "@/lib/utils";
 import {
   ShieldCheck,
   Truck,
-  Sparkles,
   CreditCard,
   Lock,
   ArrowRight,
@@ -20,8 +19,10 @@ import {
   Calendar,
   Gift,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function PreorderCheckoutPage() {
+  const { t } = useLanguage();
   const [selectedProductId, setSelectedProductId] = useState<string>("trio-bundle-female");
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [quantity, setQuantity] = useState<number>(1);
@@ -77,7 +78,7 @@ export default function PreorderCheckoutPage() {
           quantity,
           country,
           total: grandTotal,
-          date: new Date().toLocaleDateString("es-ES"),
+          date: new Date().toLocaleDateString(),
         });
 
         setSubmitted(true);
@@ -108,44 +109,44 @@ export default function PreorderCheckoutPage() {
 
               <div>
                 <span className="text-xs uppercase tracking-widest text-[#4A1521] font-bold">
-                  Reserva Oficial Confirmada
+                  {t.checkoutPage.confirmedBadge}
                 </span>
                 <h1 className="font-serif text-3xl sm:text-5xl text-[#1A1A1A] mt-1">
-                  ¡Bienvenidx a la familia V-Lush!
+                  {t.checkoutPage.confirmedTitle}
                 </h1>
                 <p className="text-xs sm:text-sm text-[#1A1A1A]/70 mt-2">
-                  Hemos enviado la confirmación y el recibo digital de preventa a <strong>{orderReceipt.email}</strong>.
+                  {t.checkoutPage.confirmedDesc} <strong>{orderReceipt.email}</strong>.
                 </p>
               </div>
 
               {/* Order Receipt Box */}
               <div className="bg-[#F5F2EB] rounded-2xl p-6 text-left space-y-3 border border-[#1A1A1A]/10 text-xs">
                 <div className="flex justify-between items-center pb-3 border-b border-[#1A1A1A]/10">
-                  <span className="text-[#1A1A1A]/60">Número de Pedido:</span>
+                  <span className="text-[#1A1A1A]/60">{t.checkoutPage.orderNumberLabel}</span>
                   <span className="font-mono font-bold text-[#4A1521]">{orderReceipt.orderId}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#1A1A1A]/60">Artículo Reservado:</span>
+                  <span className="text-[#1A1A1A]/60">{t.checkoutPage.reservedItemLabel}</span>
                   <span className="font-semibold text-right">
                     {orderReceipt.productName} ({orderReceipt.quantity}x)
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#1A1A1A]/60">Talla Seleccionada:</span>
-                  <span className="font-semibold">Talla {orderReceipt.size}</span>
+                  <span className="text-[#1A1A1A]/60">{t.checkoutPage.selectedSizeLabel}</span>
+                  <span className="font-semibold">{orderReceipt.size}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#1A1A1A]/60">País de Destino:</span>
+                  <span className="text-[#1A1A1A]/60">{t.checkoutPage.countryDestLabel}</span>
                   <span className="font-semibold">{orderReceipt.country}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#1A1A1A]/60">Fecha Estimada de Entrega:</span>
+                  <span className="text-[#1A1A1A]/60">{t.checkoutPage.estimatedDeliveryLabel}</span>
                   <span className="font-semibold text-emerald-800">
-                    Diciembre 2026 (DHL GoGreen Neutral)
+                    {t.checkoutPage.estimatedDeliveryVal}
                   </span>
                 </div>
                 <div className="flex justify-between items-center pt-3 border-t border-[#1A1A1A]/10 font-bold text-sm">
-                  <span>Total Abonado:</span>
+                  <span>{t.checkoutPage.totalPaidLabel}</span>
                   <span className="font-serif text-xl text-[#4A1521]">
                     {formatEUR(orderReceipt.total)}
                   </span>
@@ -154,9 +155,7 @@ export default function PreorderCheckoutPage() {
 
               <div className="p-4 bg-[#EFECE6] rounded-xl text-xs text-[#1A1A1A]/75 text-left flex items-start space-x-3">
                 <Gift className="w-5 h-5 text-[#4A1521] shrink-0 mt-0.5" />
-                <p>
-                  Tu pedido incluye de regalo la caja kraft numerada del <strong>Lote Piloto #01</strong> y la bolsa de tela lavable para cuidar tu lencería.
-                </p>
+                <p>{t.checkoutPage.giftNote}</p>
               </div>
 
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
@@ -164,13 +163,13 @@ export default function PreorderCheckoutPage() {
                   href="/"
                   className="flex-1 bg-[#1A1A1A] hover:bg-black text-[#F5F2EB] py-3.5 rounded-full text-xs uppercase tracking-wider font-semibold transition-colors"
                 >
-                  Volver al Inicio
+                  {t.checkoutPage.returnHome}
                 </Link>
                 <Link
                   href="/hub"
                   className="flex-1 border border-[#1A1A1A]/20 hover:bg-[#EFECE6] text-[#1A1A1A] py-3.5 rounded-full text-xs uppercase tracking-wider font-semibold transition-colors"
                 >
-                  Ver Progreso en Founders Hub
+                  {t.checkoutPage.checkHub}
                 </Link>
               </div>
             </div>
@@ -181,13 +180,13 @@ export default function PreorderCheckoutPage() {
               <div className="lg:col-span-7 space-y-8">
                 <div>
                   <span className="text-xs uppercase tracking-widest text-[#4A1521] font-bold">
-                    Campaña Lote #01
+                    {t.checkoutPage.badge}
                   </span>
                   <h1 className="font-serif text-3xl sm:text-5xl text-[#1A1A1A] mt-1">
-                    Reserva de Preventa
+                    {t.checkoutPage.title}
                   </h1>
                   <p className="text-xs sm:text-sm text-[#1A1A1A]/70 mt-1">
-                    Cofinancia la producción europea y asegura tu talla a precio protegido.
+                    {t.checkoutPage.subtitle}
                   </p>
                 </div>
 
@@ -198,7 +197,7 @@ export default function PreorderCheckoutPage() {
                       <span className="w-5 h-5 rounded-full bg-[#4A1521] text-white text-[10px] flex items-center justify-center font-sans font-bold">
                         1
                       </span>
-                      <span>Selecciona tu Prenda o Pack</span>
+                      <span>{t.checkoutPage.step1}</span>
                     </h2>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -254,7 +253,7 @@ export default function PreorderCheckoutPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-[#1A1A1A]/10">
                       <div>
                         <label className="block text-xs font-semibold text-[#1A1A1A]/80 mb-1.5">
-                          Talla Anatómica:
+                          {t.checkoutPage.sizeLabel}
                         </label>
                         <div className="flex flex-wrap gap-1.5">
                           {product.sizes.map((sz) => (
@@ -276,7 +275,7 @@ export default function PreorderCheckoutPage() {
 
                       <div>
                         <label className="block text-xs font-semibold text-[#1A1A1A]/80 mb-1.5">
-                          Cantidad:
+                          {t.checkoutPage.qtyLabel}
                         </label>
                         <div className="inline-flex items-center border border-[#1A1A1A]/20 rounded-lg bg-white">
                           <button
@@ -305,13 +304,13 @@ export default function PreorderCheckoutPage() {
                       <span className="w-5 h-5 rounded-full bg-[#4A1521] text-white text-[10px] flex items-center justify-center font-sans font-bold">
                         2
                       </span>
-                      <span>Datos de Envío en la Unión Europea</span>
+                      <span>{t.checkoutPage.step2}</span>
                     </h2>
 
                     <div className="space-y-3">
                       <div>
                         <label className="block text-xs font-medium text-[#1A1A1A]/70 mb-1">
-                          Nombre y Apellidos
+                          {t.checkoutPage.nameLabel}
                         </label>
                         <input
                           type="text"
@@ -325,14 +324,14 @@ export default function PreorderCheckoutPage() {
 
                       <div>
                         <label className="block text-xs font-medium text-[#1A1A1A]/70 mb-1">
-                          Correo Electrónico para Actualizaciones de Producción
+                          {t.checkoutPage.emailLabel}
                         </label>
                         <input
                           type="email"
                           required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="tu.email@ejemplo.com"
+                          placeholder="name@example.com"
                           className="w-full text-xs px-3.5 py-2.5 rounded-lg border border-[#1A1A1A]/20 bg-white focus:outline-none focus:border-[#4A1521]"
                         />
                       </div>
@@ -340,7 +339,7 @@ export default function PreorderCheckoutPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div className="sm:col-span-2">
                           <label className="block text-xs font-medium text-[#1A1A1A]/70 mb-1">
-                            Dirección Postal (Calle y Número)
+                            {t.checkoutPage.addressLabel}
                           </label>
                           <input
                             type="text"
@@ -353,7 +352,7 @@ export default function PreorderCheckoutPage() {
                         </div>
                         <div>
                           <label className="block text-xs font-medium text-[#1A1A1A]/70 mb-1">
-                            Código Postal
+                            {t.checkoutPage.zipLabel}
                           </label>
                           <input
                             type="text"
@@ -369,7 +368,7 @@ export default function PreorderCheckoutPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                           <label className="block text-xs font-medium text-[#1A1A1A]/70 mb-1">
-                            Ciudad
+                            {t.checkoutPage.cityLabel}
                           </label>
                           <input
                             type="text"
@@ -383,22 +382,22 @@ export default function PreorderCheckoutPage() {
 
                         <div>
                           <label className="block text-xs font-medium text-[#1A1A1A]/70 mb-1">
-                            País (Unión Europea)
+                            {t.checkoutPage.countryLabel}
                           </label>
                           <select
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
-                            className="w-full text-xs px-3.5 py-2.5 rounded-lg border border-[#1A1A1A]/20 bg-white focus:outline-none focus:border-[#4A1521]"
+                            className="w-full text-xs px-3 py-2.5 rounded-lg border border-[#1A1A1A]/20 bg-white focus:outline-none focus:border-[#4A1521]"
                           >
-                            <option value="DE">Alemania (DE) - Envío Gratis &gt; 60 €</option>
+                            <option value="DE">Deutschland (DE)</option>
                             <option value="ES">España (ES)</option>
-                            <option value="FR">Francia (FR)</option>
-                            <option value="NL">Países Bajos (NL)</option>
-                            <option value="AT">Austria (AT)</option>
+                            <option value="FR">France (FR)</option>
+                            <option value="NL">Nederland (NL)</option>
+                            <option value="AT">Österreich (AT)</option>
                             <option value="IT">Italia (IT)</option>
                             <option value="PT">Portugal (PT)</option>
-                            <option value="PL">Polonia (PL)</option>
-                            <option value="BE">Bélgica (BE)</option>
+                            <option value="PL">Polska (PL)</option>
+                            <option value="BE">België / Belgique (BE)</option>
                           </select>
                         </div>
                       </div>
@@ -411,7 +410,7 @@ export default function PreorderCheckoutPage() {
                       <span className="w-5 h-5 rounded-full bg-[#4A1521] text-white text-[10px] flex items-center justify-center font-sans font-bold">
                         3
                       </span>
-                      <span>Método de Pago Seguro</span>
+                      <span>{t.checkoutPage.step3}</span>
                     </h2>
 
                     <div className="grid grid-cols-3 gap-3">
@@ -425,7 +424,7 @@ export default function PreorderCheckoutPage() {
                         }`}
                       >
                         <CreditCard className="w-5 h-5 mx-auto mb-1 text-[#4A1521]" />
-                        <span className="text-[11px] block">Tarjeta / Apple Pay</span>
+                        <span className="text-[11px] block">{t.checkoutPage.cardMethod}</span>
                       </button>
 
                       <button
@@ -440,7 +439,7 @@ export default function PreorderCheckoutPage() {
                         <div className="font-serif text-sm font-bold text-[#4A1521] mb-1">
                           Klarna.
                         </div>
-                        <span className="text-[11px] block">Paga en Diciembre</span>
+                        <span className="text-[11px] block">{t.checkoutPage.klarnaMethod}</span>
                       </button>
 
                       <button
@@ -455,13 +454,13 @@ export default function PreorderCheckoutPage() {
                         <div className="font-serif text-sm font-bold text-sky-700 mb-1">
                           PayPal
                         </div>
-                        <span className="text-[11px] block">Checkout Rápido</span>
+                        <span className="text-[11px] block">{t.checkoutPage.paypalMethod}</span>
                       </button>
                     </div>
 
                     <div className="p-3 bg-[#EFECE6] rounded-xl text-[11px] text-[#1A1A1A]/70 flex items-center space-x-2">
                       <Lock className="w-3.5 h-3.5 text-[#4A1521]" />
-                      <span>Pago encriptado SSL de 256 bits. Sin cobros sorpresa.</span>
+                      <span>{t.checkoutPage.securityNote}</span>
                     </div>
                   </div>
 
@@ -470,7 +469,9 @@ export default function PreorderCheckoutPage() {
                     disabled={isPending}
                     className="w-full bg-[#4A1521] hover:bg-[#360E17] text-white py-4 rounded-full text-xs uppercase tracking-widest font-bold shadow-lg transition-transform active:scale-95 disabled:opacity-50 flex items-center justify-center space-x-2"
                   >
-                    <span>Confirmar Reserva de Preventa ({formatEUR(grandTotal)})</span>
+                    <span>
+                      {t.checkoutPage.submitBtn} ({formatEUR(grandTotal)})
+                    </span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </form>
@@ -480,7 +481,7 @@ export default function PreorderCheckoutPage() {
               <div className="lg:col-span-5 space-y-6">
                 <div className="bg-[#EFECE6] rounded-2xl p-6 border border-[#1A1A1A]/10 shadow-sm sticky top-28 space-y-5">
                   <h3 className="font-serif text-xl text-[#1A1A1A] font-bold pb-3 border-b border-[#1A1A1A]/10">
-                    Resumen de tu Reserva
+                    {t.checkoutPage.summaryTitle}
                   </h3>
 
                   {/* Product Micro Preview */}
@@ -497,9 +498,9 @@ export default function PreorderCheckoutPage() {
                       <h4 className="font-serif text-sm font-bold truncate text-[#1A1A1A]">
                         {product.name}
                       </h4>
-                      <p className="text-xs text-[#1A1A1A]/60">Talla {selectedSize} • Cantidad: {quantity}</p>
+                      <p className="text-xs text-[#1A1A1A]/60">{selectedSize} • {quantity}x</p>
                       <span className="inline-block text-[10px] text-[#4A1521] font-semibold">
-                        Gyno-Safe Gusset 100% Algodón Crudo
+                        {t.checkoutPage.gussetTag}
                       </span>
                     </div>
                     <span className="font-serif font-bold text-sm text-[#1A1A1A]">
@@ -510,24 +511,26 @@ export default function PreorderCheckoutPage() {
                   {/* Calculations */}
                   <div className="space-y-2 pt-3 border-t border-[#1A1A1A]/10 text-xs">
                     <div className="flex justify-between text-[#1A1A1A]/70">
-                      <span>Subtotal ({quantity} prendas)</span>
+                      <span>Subtotal ({quantity}x)</span>
                       <span>{formatEUR(subtotal)}</span>
                     </div>
                     <div className="flex justify-between text-[#1A1A1A]/70">
                       <span className="flex items-center space-x-1">
                         <Truck className="w-3.5 h-3.5 text-[#4A1521]" />
-                        <span>Envío DHL GoGreen ({country})</span>
+                        <span>DHL GoGreen ({country})</span>
                       </span>
                       <span>
                         {shippingCost === 0 ? (
-                          <strong className="text-emerald-800 uppercase">Gratis</strong>
+                          <strong className="text-emerald-800 uppercase">
+                            {t.checkoutPage.shippingDeFree}
+                          </strong>
                         ) : (
                           formatEUR(shippingCost)
                         )}
                       </span>
                     </div>
                     <div className="flex justify-between items-center pt-3 border-t border-[#1A1A1A]/10 font-bold text-base">
-                      <span>Total Garantizado:</span>
+                      <span>{t.checkoutPage.totalLabel}</span>
                       <span className="font-serif text-2xl text-[#4A1521]">
                         {formatEUR(grandTotal)}
                       </span>
@@ -538,25 +541,25 @@ export default function PreorderCheckoutPage() {
                   <div className="p-4 bg-white/70 rounded-xl border border-[#1A1A1A]/10 space-y-2 text-xs">
                     <div className="flex items-center space-x-2 text-[#4A1521] font-bold">
                       <Calendar className="w-4 h-4" />
-                      <span>Calendario de Producción Lote #01</span>
+                      <span>{t.checkoutPage.timelineTitle}</span>
                     </div>
                     <p className="text-[#1A1A1A]/70 text-[11px] leading-relaxed">
-                      • <strong>Octubre:</strong> Cierre de preventa y compra de metros de algodón GOTS.
+                      • {t.checkoutPage.timelineOct}
                       <br />
-                      • <strong>Noviembre:</strong> Confección en Braga (Portugal) y empaquetado.
+                      • {t.checkoutPage.timelineNov}
                       <br />
-                      • <strong>Diciembre:</strong> Despacho a tu puerta antes de las fiestas.
+                      • {t.checkoutPage.timelineDec}
                     </p>
                   </div>
 
                   <div className="space-y-2 text-[11px] text-[#1A1A1A]/60 pt-2 border-t border-[#1A1A1A]/10">
                     <p className="flex items-center space-x-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-                      <span>Cambio de talla gratuito si no te queda perfecto.</span>
+                      <span>{t.checkoutPage.sizeExchangePerk}</span>
                     </p>
                     <p className="flex items-center space-x-1.5">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-                      <span>Garantía de reembolso íntegro si el lote no alcanza el MOQ.</span>
+                      <span>{t.checkoutPage.refundPerk}</span>
                     </p>
                   </div>
                 </div>

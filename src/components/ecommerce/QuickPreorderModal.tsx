@@ -5,6 +5,7 @@ import confetti from "canvas-confetti";
 import { Product } from "@/lib/initial-data";
 import { formatEUR } from "@/lib/utils";
 import { X, Sparkles, ShieldCheck, Check, ArrowRight, Loader2 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface QuickPreorderModalProps {
   product: Product;
@@ -21,6 +22,7 @@ export default function QuickPreorderModal({
   onClose,
   onSuccess,
 }: QuickPreorderModalProps) {
+  const { t } = useLanguage();
   const [size, setSize] = useState<string>(initialSize || product.sizes[0] || "M");
   const [isTrioPack, setIsTrioPack] = useState(false);
   const [name, setName] = useState("");
@@ -50,7 +52,7 @@ export default function QuickPreorderModal({
           shipping_address: address,
           country,
           product_line: product.line,
-          item_name: isTrioPack ? `Pack Trío (${product.name})` : product.name,
+          item_name: isTrioPack ? `Pack Trio (${product.name})` : product.name,
           size,
           quantity: isTrioPack ? 3 : 1,
           total_amount: currentPrice,
@@ -71,7 +73,7 @@ export default function QuickPreorderModal({
 
       if (onSuccess) onSuccess();
     } catch {
-      setErrorMsg("Ocurrió un error al procesar tu reserva. Inténtalo de nuevo.");
+      setErrorMsg("Error processing preorder / Error procesando reserva.");
     } finally {
       setSubmitting(false);
     }
@@ -94,44 +96,43 @@ export default function QuickPreorderModal({
               <Check className="w-8 h-8" />
             </div>
             <h3 className="font-serif text-3xl text-[#1A1A1A]">
-              ¡Tu reserva está asegurada!
+              {t.quickModal.successTitle}
             </h3>
             <p className="text-sm text-[#1A1A1A]/70 max-w-md mx-auto">
-              Muchas gracias, <strong>{name}</strong>. Hemos reservado tu unidad de{" "}
-              <strong>{product.name} (Talla {size})</strong> en el Lote Piloto #01.
+              {t.quickModal.successDesc} <strong>{product.name} ({size})</strong>.
             </p>
             <div className="bg-[#ECE5D8] rounded-xl p-4 text-xs text-left space-y-1.5 border border-[#1A1A1A]/10">
               <div className="flex justify-between">
-                <span className="text-[#1A1A1A]/60">Destino:</span>
+                <span className="text-[#1A1A1A]/60">{t.quickModal.successDest}</span>
                 <span className="font-semibold">{country}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#1A1A1A]/60">Total de preventa:</span>
+                <span className="text-[#1A1A1A]/60">{t.quickModal.successTotal}</span>
                 <span className="font-serif font-bold text-[#4A1521]">{formatEUR(currentPrice)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#1A1A1A]/60">Entrega estimada:</span>
-                <span className="font-medium text-emerald-800">Diciembre 2026 (DHL GoGreen)</span>
+                <span className="text-[#1A1A1A]/60">{t.quickModal.successDelivery}</span>
+                <span className="font-medium text-emerald-800">DHL GoGreen</span>
               </div>
             </div>
             <button
               onClick={onClose}
               className="w-full bg-[#1A1A1A] text-[#F5F2EB] py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-black transition-colors"
             >
-              Cerrar y seguir explorando
+              {t.quickModal.closeModalBtn}
             </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-5">
             <div>
               <span className="text-[10px] uppercase tracking-widest text-[#4A1521] font-bold">
-                Reserva de Lote Piloto • Entrega Diciembre
+                {t.quickModal.badge}
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl text-[#1A1A1A] mt-0.5">
                 {product.name}
               </h3>
               <p className="text-xs text-[#1A1A1A]/70 mt-1">
-                Asegura tu talla antes de enviar las unidades a taller en Braga / Łódź.
+                {t.quickModal.subhead}
               </p>
             </div>
 
@@ -139,9 +140,9 @@ export default function QuickPreorderModal({
             {product.availableForTrio && product.trioPrice && (
               <div className="bg-[#ECE5D8] p-3 rounded-xl border border-[#1A1A1A]/10 flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-bold text-[#1A1A1A]">¿Prefieres el Pack Trío?</p>
+                  <p className="text-xs font-bold text-[#1A1A1A]">{t.quickModal.trioQuestion}</p>
                   <p className="text-[11px] text-[#1A1A1A]/70">
-                    3 piezas en caja kraft de regalo por solo {formatEUR(product.trioPrice)}
+                    {t.quickModal.trioSub} {formatEUR(product.trioPrice)}
                   </p>
                 </div>
                 <button
@@ -153,7 +154,7 @@ export default function QuickPreorderModal({
                       : "bg-white text-[#1A1A1A] border border-[#1A1A1A]/20"
                   }`}
                 >
-                  {isTrioPack ? "Pack Trío Activado" : "Añadir Trío"}
+                  {isTrioPack ? t.quickModal.trioActivated : t.quickModal.trioAdd}
                 </button>
               </div>
             )}
@@ -161,7 +162,7 @@ export default function QuickPreorderModal({
             {/* Size Selector */}
             <div>
               <label className="block text-xs font-medium text-[#1A1A1A]/80 mb-1.5">
-                Talla deseada:
+                {t.quickModal.sizeLabel}
               </label>
               <div className="flex flex-wrap gap-2">
                 {product.sizes.map((sz) => (
@@ -185,14 +186,14 @@ export default function QuickPreorderModal({
             <div className="space-y-3 pt-2 border-t border-[#1A1A1A]/10">
               <div>
                 <label className="block text-[11px] font-semibold text-[#1A1A1A]/70 mb-1">
-                  Nombre Completo
+                  {t.quickModal.nameLabel}
                 </label>
                 <input
                   type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Ej. Marie Becker"
+                  placeholder={t.quickModal.namePlaceholder}
                   className="w-full text-xs px-3 py-2.5 rounded-lg border border-[#1A1A1A]/20 bg-white focus:outline-none focus:border-[#4A1521]"
                 />
               </div>
@@ -200,48 +201,49 @@ export default function QuickPreorderModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-[11px] font-semibold text-[#1A1A1A]/70 mb-1">
-                    Correo Electrónico
+                    {t.quickModal.emailLabel}
                   </label>
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="marie@ejemplo.com"
+                    placeholder={t.quickModal.emailPlaceholder}
                     className="w-full text-xs px-3 py-2.5 rounded-lg border border-[#1A1A1A]/20 bg-white focus:outline-none focus:border-[#4A1521]"
                   />
                 </div>
                 <div>
                   <label className="block text-[11px] font-semibold text-[#1A1A1A]/70 mb-1">
-                    País de Envío (UE)
+                    {t.quickModal.countryLabel}
                   </label>
                   <select
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
                     className="w-full text-xs px-3 py-2.5 rounded-lg border border-[#1A1A1A]/20 bg-white focus:outline-none focus:border-[#4A1521]"
                   >
-                    <option value="DE">Alemania (DE)</option>
+                    <option value="DE">Deutschland (DE)</option>
                     <option value="ES">España (ES)</option>
-                    <option value="FR">Francia (FR)</option>
-                    <option value="NL">Países Bajos (NL)</option>
-                    <option value="AT">Austria (AT)</option>
+                    <option value="FR">France (FR)</option>
+                    <option value="NL">Nederland (NL)</option>
+                    <option value="AT">Österreich (AT)</option>
                     <option value="IT">Italia (IT)</option>
                     <option value="PT">Portugal (PT)</option>
-                    <option value="PL">Polonia (PL)</option>
+                    <option value="PL">Polska (PL)</option>
+                    <option value="BE">België / Belgique (BE)</option>
                   </select>
                 </div>
               </div>
 
               <div>
                 <label className="block text-[11px] font-semibold text-[#1A1A1A]/70 mb-1">
-                  Dirección o Ciudad de Entrega
+                  {t.quickModal.addressLabel}
                 </label>
                 <input
                   type="text"
                   required
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  placeholder="Calle, número, código postal y ciudad"
+                  placeholder={t.quickModal.addressPlaceholder}
                   className="w-full text-xs px-3 py-2.5 rounded-lg border border-[#1A1A1A]/20 bg-white focus:outline-none focus:border-[#4A1521]"
                 />
               </div>
@@ -256,7 +258,7 @@ export default function QuickPreorderModal({
             {/* Total and Submit */}
             <div className="pt-2 flex items-center justify-between">
               <div>
-                <p className="text-[11px] text-[#1A1A1A]/60">Total preventa:</p>
+                <p className="text-[11px] text-[#1A1A1A]/60">{t.quickModal.totalLabel}</p>
                 <p className="font-serif text-2xl font-bold text-[#4A1521]">
                   {formatEUR(currentPrice)}
                 </p>
@@ -270,11 +272,11 @@ export default function QuickPreorderModal({
                 {submitting ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Confirmando...</span>
+                    <span>{t.quickModal.confirmingBtn}</span>
                   </>
                 ) : (
                   <>
-                    <span>Confirmar Reserva</span>
+                    <span>{t.quickModal.confirmBtn}</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
@@ -283,7 +285,7 @@ export default function QuickPreorderModal({
 
             <div className="flex items-center justify-center space-x-2 text-[10px] text-[#1A1A1A]/60 pt-2">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-              <span>Garantía V-Lush: Sin cargos sorpresa, envío neutral en carbono.</span>
+              <span>{t.quickModal.guaranteeNote}</span>
             </div>
           </form>
         )}
